@@ -39,6 +39,7 @@ public class About extends SettingsPreferenceFragment {
 
     public static final String TAG = "About";
 
+    private String KEY_CRDROID_DONATE = "crdroid_donate";
     private String KEY_CRDROID_SOURCE = "crdroid_source";
     private String KEY_CRDROID_TELEGRAM = "crdroid_telegram";
     private String KEY_CRDROID_SHARE = "crdroid_share";
@@ -48,6 +49,7 @@ public class About extends SettingsPreferenceFragment {
     private String KEY_CRDROID_SPONSOR = "crdroid_sponsor";
     private String KEY_CRDROID_BUILDSERVERSPONSOR = "crdroid_buildserversponsor";
 
+    private Preference mDonate;
     private Preference mSourceUrl;
     private Preference mTelegramUrl;
     private Preference mShare;
@@ -62,6 +64,7 @@ public class About extends SettingsPreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crdroid_settings_about);
 
+        mDonate = findPreference(KEY_CRDROID_DONATE);
         mSourceUrl = findPreference(KEY_CRDROID_SOURCE);
         mTelegramUrl = findPreference(KEY_CRDROID_TELEGRAM);
         mShare = findPreference(KEY_CRDROID_SHARE);
@@ -74,7 +77,9 @@ public class About extends SettingsPreferenceFragment {
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference == mSourceUrl) {
+        if (preference == mDonate) {
+            launchUrl("https://crdroid.net/donate.php");
+        } else if (preference == mSourceUrl) {
             launchUrl("https://github.com/crdroidandroid");
         } else if (preference == mTelegramUrl) {
             launchUrl("https://t.me/crDroidAndroid");
